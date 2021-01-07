@@ -1,0 +1,338 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+/* Variables 
+/////////////////////////////////////////////////////////////////////////////*/
+/* GENERAL 
+/////////////////////////////////////////////////////////////////////////////*/
+html,
+body {
+  height: 100%; }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
+
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+/* BACKGROUND 
+/////////////////////////////////////////////////////////////////////////////*/
+#background-container,
+#background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #123;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1;
+  color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* TBAR 
+/////////////////////////////////////////////////////////////////////////////*/
+#tbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+#logo,
+#settings {
+  color: #fff;
+  padding: 20px; }
+
+/* BBAR 
+/////////////////////////////////////////////////////////////////////////////*/
+#bbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
+#word-data-container {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  animation: fade 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+#word-data-container.paused {
+  animation-play-state: paused; }
+
+.word-data {
+  flex: 0 0 33.33333%;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 20px; }
+
+.word-data:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
+
+.word-data h2 {
+  font-weight: 600; }
+
+/* WORD 
+/////////////////////////////////////////////////////////////////////////////*/
+#word-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -1rem; }
+
+#word {
+  font-family: "Poppins";
+  font-size: 100px;
+  font-weight: 400;
+  letter-spacing: 0.075em;
+  color: white;
+  padding: 0.5em;
+  animation: textrise 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+#word.paused {
+  animation-play-state: paused; }
+
+/* IMPORTS 
+/////////////////////////////////////////////////////////////////////////////*/
+#background-container::before,
+#background-container::after,
+#background::before,
+#background::after {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  content: ".";
+  mix-blend-mode: screen;
+  animation: 44s -27s move infinite ease-in-out alternate; }
+
+#background::before {
+  text-shadow: 0.94258em 0.08073em 7px rgba(156, 0, 255, 0.9), 0.83324em -0.22333em 7px rgba(0, 218, 255, 0.9), -0.37531em 1.19482em 7px rgba(0, 255, 183, 0.9), -0.4244em 0.41844em 7px rgba(40, 0, 255, 0.9), 1.95608em 1.76188em 7px rgba(57, 255, 0, 0.9), -0.30262em 1.31431em 7px rgba(80, 255, 0, 0.9), 0.82363em 1.49361em 7px rgba(255, 0, 26, 0.9), 1.61788em -0.4054em 7px rgba(120, 0, 255, 0.9), 0.46763em 0.11868em 7px rgba(255, 0, 188, 0.9), -0.02382em 0.79904em 7px rgba(15, 255, 0, 0.9), 1.14353em 0.71135em 7px rgba(255, 143, 0, 0.9), 2.18066em 1.15024em 7px rgba(0, 255, 133, 0.9), -0.09427em 1.1915em 7px rgba(116, 255, 0, 0.9), 2.09452em 1.13391em 7px rgba(0, 117, 255, 0.9), 1.7076em 0.71792em 7px rgba(166, 255, 0, 0.9), 0.85405em 1.1683em 7px rgba(0, 255, 106, 0.9), 0.75443em 2.32405em 7px rgba(255, 0, 179, 0.9), 1.84155em -0.20838em 7px rgba(93, 0, 255, 0.9), 0.93309em -0.06286em 7px rgba(0, 25, 255, 0.9), 2.44609em 1.28157em 7px rgba(183, 0, 255, 0.9), 1.5679em 1.90804em 7px rgba(0, 255, 152, 0.9), 2.26185em -0.4448em 7px rgba(255, 0, 37, 0.9), -0.31996em 0.36376em 7px rgba(255, 0, 254, 0.9), 2.40085em 1.56em 7px rgba(0, 255, 185, 0.9), 1.19728em 1.59089em 7px rgba(33, 0, 255, 0.9), 0.50781em 1.39645em 7px rgba(0, 44, 255, 0.9), 1.45118em 2.00507em 7px rgba(0, 97, 255, 0.9), 1.14707em 0.7224em 7px rgba(255, 185, 0, 0.9), -0.41384em 2.47906em 7px rgba(0, 122, 255, 0.9), 0.71942em 0.88738em 7px rgba(255, 0, 191, 0.9), 0.86428em -0.12464em 7px rgba(38, 255, 0, 0.9), -0.43612em 0.82484em 7px rgba(42, 255, 0, 0.9), 0.65737em 0.64215em 7px rgba(0, 255, 54, 0.9), 2.34167em 2.03977em 7px rgba(255, 0, 2, 0.9), 0.7544em 1.19133em 7px rgba(0, 255, 141, 0.9), 1.59881em 1.16333em 7px rgba(217, 0, 255, 0.9), 0.57971em -0.40986em 7px rgba(255, 0, 76, 0.9), -0.32795em 1.62178em 7px rgba(0, 255, 115, 0.9), 0.42929em -0.36541em 7px rgba(255, 0, 196, 0.9), 1.20834em 2.16799em 7px rgba(0, 255, 198, 0.9), 1.81254em -0.05008em 7px rgba(173, 0, 255, 0.9);
+  animation-duration: 44s;
+  animation-delay: -27s; }
+
+#background::after {
+  text-shadow: 1.8068em 0.11837em 7px rgba(255, 69, 0, 0.9), 0.62586em 2.47211em 7px rgba(208, 0, 255, 0.9), 1.84041em 1.52376em 7px rgba(0, 82, 255, 0.9), 0.12496em 0.87561em 7px rgba(0, 20, 255, 0.9), 0.25345em 1.25455em 7px rgba(0, 255, 191, 0.9), 1.00023em 0.17039em 7px rgba(229, 255, 0, 0.9), -0.44323em -0.41563em 7px rgba(255, 118, 0, 0.9), 0.446em -0.18734em 7px rgba(0, 255, 132, 0.9), 1.51042em 0.81886em 7px rgba(3, 255, 0, 0.9), 0.48726em 2.32104em 7px rgba(255, 19, 0, 0.9), 1.73639em -0.19167em 7px rgba(255, 83, 0, 0.9), 1.01991em 2.37978em 7px rgba(0, 255, 55, 0.9), 0.92429em 2.08601em 7px rgba(0, 255, 85, 0.9), 0.86585em -0.32726em 7px rgba(0, 21, 255, 0.9), 2.21891em 1.42582em 7px rgba(255, 0, 150, 0.9), -0.36932em 1.86489em 7px rgba(0, 111, 255, 0.9), -0.02329em 1.56472em 7px rgba(0, 255, 21, 0.9), 1.85979em 0.90143em 7px rgba(41, 255, 0, 0.9), 0.4459em 1.45118em 7px rgba(255, 0, 7, 0.9), -0.17893em -0.2941em 7px rgba(0, 255, 33, 0.9), 1.27677em 2.26853em 7px rgba(255, 52, 0, 0.9), 1.88712em 2.09404em 7px rgba(213, 255, 0, 0.9), 1.26629em 0.95683em 7px rgba(127, 0, 255, 0.9), 2.13857em 1.24448em 7px rgba(255, 0, 131, 0.9), 0.61905em -0.036em 7px rgba(89, 0, 255, 0.9), -0.20589em 1.51138em 7px rgba(0, 255, 19, 0.9), 0.42581em 1.42014em 7px rgba(0, 255, 227, 0.9), 1.2556em 2.27767em 7px rgba(213, 0, 255, 0.9), 1.14268em 0.78643em 7px rgba(255, 0, 15, 0.9), 0.40928em 1.22118em 7px rgba(255, 0, 166, 0.9), 0.14899em 0.36742em 7px rgba(0, 255, 6, 0.9), -0.12331em 1.40484em 7px rgba(112, 255, 0, 0.9), 1.26968em -0.13619em 7px rgba(104, 0, 255, 0.9), 0.17521em 1.48375em 7px rgba(197, 255, 0, 0.9), 1.11742em -0.12834em 7px rgba(255, 0, 71, 0.9), 1.40761em 1.4285em 7px rgba(0, 40, 255, 0.9), 0.49392em 1.05606em 7px rgba(0, 255, 116, 0.9), 1.18201em 1.65235em 7px rgba(0, 255, 75, 0.9), 0.95037em -0.01537em 7px rgba(104, 255, 0, 0.9), 0.62852em -0.31856em 7px rgba(29, 255, 0, 0.9), 1.95833em 1.77548em 7px rgba(255, 46, 0, 0.9);
+  animation-duration: 43s;
+  animation-delay: -32s; }
+
+#background-container::before {
+  text-shadow: 0.04893em 1.91389em 7px rgba(0, 255, 33, 0.9), -0.20159em 1.25506em 7px rgba(255, 237, 0, 0.9), 1.50176em 0.38304em 7px rgba(0, 255, 205, 0.9), 0.58783em 1.90426em 7px rgba(102, 0, 255, 0.9), 1.80092em 2.23378em 7px rgba(255, 38, 0, 0.9), 0.97006em 2.39624em 7px rgba(22, 0, 255, 0.9), 1.17427em 1.65248em 7px rgba(0, 17, 255, 0.9), -0.49227em 1.38377em 7px rgba(255, 0, 252, 0.9), 2.10277em 1.50319em 7px rgba(255, 0, 188, 0.9), -0.06504em 0.33617em 7px rgba(255, 216, 0, 0.9), -0.3798em 2.37932em 7px rgba(148, 0, 255, 0.9), 0.49535em 0.38351em 7px rgba(148, 255, 0, 0.9), 2.43818em 1.94769em 7px rgba(255, 140, 0, 0.9), 2.10678em 1.80199em 7px rgba(0, 122, 255, 0.9), 2.27841em 1.28766em 7px rgba(0, 247, 255, 0.9), 1.05888em 0.97253em 7px rgba(76, 0, 255, 0.9), 0.182em 1.60586em 7px rgba(119, 0, 255, 0.9), 1.36084em 1.48045em 7px rgba(0, 100, 255, 0.9), 1.73863em 1.02994em 7px rgba(255, 0, 90, 0.9), 1.76021em -0.04902em 7px rgba(0, 255, 124, 0.9), 0.57944em 2.49765em 7px rgba(11, 0, 255, 0.9), -0.47521em 2.07788em 7px rgba(0, 249, 255, 0.9), 0.65254em 0.11149em 7px rgba(20, 0, 255, 0.9), 1.92548em 1.14463em 7px rgba(0, 42, 255, 0.9), 0.91143em 1.02923em 7px rgba(206, 0, 255, 0.9), 0.63409em 1.73913em 7px rgba(7, 255, 0, 0.9), -0.16216em 0.54978em 7px rgba(0, 255, 88, 0.9), 1.42834em 0.36666em 7px rgba(171, 0, 255, 0.9), 0.03358em 2.15179em 7px rgba(230, 255, 0, 0.9), 2.16327em 0.78558em 7px rgba(0, 255, 134, 0.9), 2.23012em 1.22418em 7px rgba(0, 255, 17, 0.9), 2.07243em 0.60466em 7px rgba(255, 0, 136, 0.9), 2.05288em 1.85452em 7px rgba(255, 0, 50, 0.9), 0.39032em 1.94184em 7px rgba(255, 10, 0, 0.9), 0.62602em 1.20517em 7px rgba(255, 0, 198, 0.9), 0.11906em 0.21418em 7px rgba(255, 94, 0, 0.9), 0.99803em 0.84359em 7px rgba(95, 0, 255, 0.9), 0.36824em 0.89446em 7px rgba(64, 0, 255, 0.9), -0.29479em 0.00683em 7px rgba(255, 0, 183, 0.9), 1.39798em 1.74507em 7px rgba(0, 74, 255, 0.9), -0.27532em 0.26012em 7px rgba(255, 246, 0, 0.9);
+  animation-duration: 42s;
+  animation-delay: -23s; }
+
+#background-container::after {
+  text-shadow: -0.18695em 1.96599em 7px rgba(255, 0, 237, 0.9), 0.31202em 1.63031em 7px rgba(0, 255, 14, 0.9), 0.71985em -0.45172em 7px rgba(0, 255, 21, 0.9), 0.62991em 1.36282em 7px rgba(255, 0, 140, 0.9), 0.56621em 1.0945em 7px rgba(31, 255, 0, 0.9), -0.27366em 1.49771em 7px rgba(255, 240, 0, 0.9), 0.96346em 2.18139em 7px rgba(216, 255, 0, 0.9), -0.49177em 2.18855em 7px rgba(41, 255, 0, 0.9), 0.88658em 0.61452em 7px rgba(241, 255, 0, 0.9), 0.70345em 1.57834em 7px rgba(255, 32, 0, 0.9), 0.32457em 0.8024em 7px rgba(255, 0, 177, 0.9), 1.05599em 1.8141em 7px rgba(0, 255, 16, 0.9), 1.92508em -0.40101em 7px rgba(203, 255, 0, 0.9), -0.42581em 0.76789em 7px rgba(224, 0, 255, 0.9), 1.38083em 0.08322em 7px rgba(203, 0, 255, 0.9), 0.59492em 0.82539em 7px rgba(0, 255, 141, 0.9), 2.31462em 0.45911em 7px rgba(255, 0, 113, 0.9), 0.87313em 0.75996em 7px rgba(184, 255, 0, 0.9), 0.27981em -0.04984em 7px rgba(106, 0, 255, 0.9), 0.76689em -0.21273em 7px rgba(110, 255, 0, 0.9), 0.461em -0.1074em 7px rgba(255, 104, 0, 0.9), 0.69116em -0.20117em 7px rgba(131, 0, 255, 0.9), 0.7617em 1.05796em 7px rgba(0, 142, 255, 0.9), 2.35982em 2.08136em 7px rgba(255, 171, 0, 0.9), -0.24146em 0.15502em 7px rgba(255, 0, 55, 0.9), 0.99146em 2.08235em 7px rgba(241, 255, 0, 0.9), 0.78397em 0.4129em 7px rgba(0, 255, 157, 0.9), 0.20456em 0.1825em 7px rgba(19, 255, 0, 0.9), 1.59688em 0.42609em 7px rgba(255, 84, 0, 0.9), 2.00995em -0.30056em 7px rgba(182, 0, 255, 0.9), 1.75797em 1.75615em 7px rgba(8, 255, 0, 0.9), 1.31273em 1.03899em 7px rgba(255, 64, 0, 0.9), 1.47393em 1.69243em 7px rgba(255, 103, 0, 0.9), 0.66275em 2.1599em 7px rgba(108, 0, 255, 0.9), 2.28093em 1.76675em 7px rgba(143, 0, 255, 0.9), 1.67834em -0.30698em 7px rgba(0, 255, 104, 0.9), -0.36366em 1.13705em 7px rgba(0, 196, 255, 0.9), 1.17036em 1.0224em 7px rgba(105, 255, 0, 0.9), 0.19576em 0.89941em 7px rgba(0, 249, 255, 0.9), 1.08589em 0.40158em 7px rgba(255, 53, 0, 0.9), -0.03539em 0.70454em 7px rgba(0, 255, 242, 0.9);
+  animation-duration: 41s;
+  animation-delay: -19s; }
+
+@keyframes move {
+  from {
+    transform: rotate(0deg) scale(12) translateX(-20px); }
+  to {
+    transform: rotate(360deg) scale(18) translateX(20px); } }
+
+@keyframes textrise {
+  0% {
+    -webkit-transform: translateY(5%);
+    transform: translateY(5%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 0;
+    text-shadow: none; }
+  10% {
+    -webkit-transform: translateY(-5%);
+    transform: translateY(-5%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 1;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.75); }
+  70% {
+    -webkit-transform: translateY(-5%);
+    transform: translateY(-5%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 1;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc, 0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.75); }
+  90% {
+    -webkit-transform: translateY(5%);
+    transform: translateY(5%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 0;
+    text-shadow: none; }
+  100% {
+    -webkit-transform: translateY(5%);
+    transform: translateY(5%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    opacity: 0;
+    text-shadow: none; } }
+
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  10% {
+    opacity: 1; }
+  70% {
+    opacity: 1; }
+  90% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
