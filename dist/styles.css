@@ -197,6 +197,12 @@ body {
   color: #333333;
   -webkit-font-smoothing: antialiased; }
 
+.icon {
+  fill: #123; }
+
+.icon.white {
+  fill: #fff; }
+
 .icon:hover {
   cursor: pointer; }
 
@@ -232,9 +238,48 @@ body {
 
 #settings {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: white; }
+  bottom: 15px;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  align-items: center; }
+
+#settings > *:not(:last-child) {
+  margin-right: 20px; }
+
+#settings > :first-child {
+  margin-left: 10px; }
+
+#settings::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  opacity: 0;
+  transition: width 0.5s, opacity 0.3s; }
+
+#settings:hover::before {
+  width: 100%;
+  opacity: 1; }
+
+#settings svg {
+  transition: 0.5s; }
+
+#settings:hover svg {
+  fill: #123;
+  transform: rotate(120deg); }
+
+#settings > *:not(:first-child) {
+  opacity: 0;
+  transition: 0.4s;
+  transition-delay: 0.5s; }
+
+#settings:hover > *:not(:first-child) {
+  opacity: 1; }
 
 /* APP 
 /////////////////////////////////////////////////////////////////////////////*/
@@ -333,6 +378,14 @@ body {
 
 .saved-word:hover span {
   font-weight: 600; }
+
+/* SIDEBARHIDDEN
+/////////////////////////////////////////////////////////////////////////////*/
+#sidebar {
+  transition: all 0.7s; }
+
+#sidebar.hidden {
+  transform: translateX(100%); }
 
 /* IMPORTS 
 /////////////////////////////////////////////////////////////////////////////*/

@@ -10,9 +10,6 @@ import * as icons from "./icons";
 // console.log(helpers.arrayUnique(allWords));
 
 window.addEventListener("DOMContentLoaded", (e) => {
-    //all animated
-    const $animatedEls = $(".animated");
-
     //big word
     const $wordContainer = $("#word-container");
     const $wordEl = $("#word");
@@ -53,9 +50,27 @@ window.addEventListener("DOMContentLoaded", (e) => {
             });
     });
 
-    //pause animation
-    $animatedEls.on("mouseenter", (e) => $($animatedEls).addClass("paused"));
-    $animatedEls.on("mouseleave", (e) => $($animatedEls).removeClass("paused"));
+    //Animation
+    const $animatedEls = $(".animated");
+
+    $("#slow").click(() => $animatedEls.css("animation-duration", "10s"));
+    $("#med").click(() => $animatedEls.css("animation-duration", "6s"));
+    $("#fast").click(() => $animatedEls.css("animation-duration", "3s"));
+
+    $animatedEls.on("mouseenter", () => $($animatedEls).addClass("paused"));
+    $animatedEls.on("mouseleave", () => $($animatedEls).removeClass("paused"));
+
+    //sidebar on word hover
+    $wordEl.on("mouseenter", () => {
+        const $sidebar = $("#sidebar");
+        if ($sidebar.hasClass("hidden")) {
+            $sidebar.removeClass("hidden");
+            $wordEl.one("mouseleave", () => $sidebar.addClass("hidden"));
+        }
+    });
+
+    //sidebar settings
+    $("#sidebar-setting").click(() => $("#sidebar").toggleClass("hidden"));
 
     //saved words
     var savedWords = localStorage.savedWords

@@ -3,10 +3,10 @@
 /* Variables 
 /////////////////////////////////////////////////////////////////////////////*/
 $border-1: rgba(0, 0, 0, 0.1);
+$main-color: #123;
 
 /* GENERAL 
 /////////////////////////////////////////////////////////////////////////////*/
-
 html,
 body {
     height: 100%;
@@ -19,6 +19,14 @@ body {
     letter-spacing: 0.02em;
     color: #333333;
     -webkit-font-smoothing: antialiased;
+}
+
+.icon {
+    fill: $main-color;
+}
+
+.icon.white {
+    fill: #fff;
 }
 
 .icon:hover {
@@ -38,7 +46,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: #123;
+    background: $main-color;
     overflow: hidden;
     font-size: 14px;
     line-height: 1;
@@ -62,9 +70,58 @@ body {
 
 #settings {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: white;
+    bottom: 15px;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#settings > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+#settings > :first-child {
+    margin-left: 10px;
+}
+
+//hover stuff
+
+#settings::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    opacity: 0;
+    transition: width 0.5s, opacity 0.3s;
+}
+
+#settings:hover::before {
+    width: 100%;
+    opacity: 1;
+}
+
+#settings svg {
+    transition: 0.5s;
+}
+
+#settings:hover svg {
+    fill: $main-color;
+    transform: rotate(120deg);
+}
+
+#settings > *:not(:first-child) {
+    opacity: 0;
+    transition: 0.4s;
+    transition-delay: 0.5s;
+}
+
+#settings:hover > *:not(:first-child) {
+    opacity: 1;
 }
 
 /* APP 
@@ -121,7 +178,7 @@ body {
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #123;
+    color: $main-color;
     margin-bottom: 5px;
     letter-spacing: 1.05px;
 }
@@ -147,9 +204,6 @@ body {
 
 /* SAVED LIST 
 /////////////////////////////////////////////////////////////////////////////*/
-
-#saved-words-list {
-}
 
 .saved-word {
     position: relative;
@@ -188,6 +242,30 @@ body {
 .saved-word:hover span {
     font-weight: 600;
 }
+
+/* SIDEBARHIDDEN
+/////////////////////////////////////////////////////////////////////////////*/
+
+#sidebar {
+    transition: all 0.7s;
+}
+
+#sidebar.hidden {
+    // flex-basis: 0.00001px;
+    transform: translateX(100%);
+    // width: 0;
+}
+
+// #word-data-container,
+// #saved-words-list {
+//     transition: all 1s;
+// }
+
+// #sidebar.hidden > #word-data-container,
+// #sidebar.hidden > #saved-words-container {
+//     opacity: 0;
+//     visibility: hidden;
+// }
 
 /* IMPORTS 
 /////////////////////////////////////////////////////////////////////////////*/
