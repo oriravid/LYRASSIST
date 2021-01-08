@@ -286,6 +286,8 @@ body {
   margin-bottom: 5px;
   letter-spacing: 1.05px; }
 
+/* WORD DATA 
+/////////////////////////////////////////////////////////////////////////////*/
 .word-data {
   margin-bottom: 20px;
   animation: fade 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -298,6 +300,39 @@ body {
 
 .word-data li {
   margin-bottom: 10px; }
+
+/* SAVED LIST 
+/////////////////////////////////////////////////////////////////////////////*/
+.saved-word {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 10px; }
+
+.saved-word::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: width 0.4s; }
+
+.saved-word:hover::after {
+  width: 100%; }
+
+.saved-word svg {
+  opacity: 0;
+  transition: opacity 0.5s; }
+
+.saved-word:hover svg {
+  opacity: 1; }
+
+.saved-word:hover span {
+  font-weight: 600; }
 
 /* IMPORTS 
 /////////////////////////////////////////////////////////////////////////////*/

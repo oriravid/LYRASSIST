@@ -79,7 +79,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
     const $savedList = $("#saved-words-list");
 
     const generateSavedWord = (savedWordObj) => {
-        var $savedWordLi = $("<li class='saved'></li>");
+        var $savedWordLi = $("<li class='saved-word'></li>");
 
         var $deleteWord = $(`${_icons__WEBPACK_IMPORTED_MODULE_2__.close("icon")}`);
         $deleteWord.on("click", () =>
@@ -87,7 +87,9 @@ window.addEventListener("DOMContentLoaded", (e) => {
         );
         $savedWordLi.append($deleteWord);
 
-        var $wordContent = $(`<span>${savedWordObj.word}</span>`);
+        var $wordContent = $(
+            `<span class="pointer">${savedWordObj.word}</span>`
+        );
         $savedWordLi.append($wordContent);
 
         return $savedWordLi;
@@ -111,8 +113,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
             savedWords[currentWordObj.word] = currentWordObj;
             $savedList.append(generateSavedWord(currentWordObj));
             localStorage.setItem("savedWords", JSON.stringify(savedWords));
-
-            console.log(localStorage.savedWords);
         }
     });
 
