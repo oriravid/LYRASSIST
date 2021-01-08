@@ -23,28 +23,32 @@
     </head>
     <body>
         <div id="background-container"><div id="background"></div></div>
-        <div id="tbar">
-            <div id="logo">LYRASSIST</div>
-            <div id="settings">SETTINGS</div>
-        </div>
-        <div id="word-container">
-            <text id="word" class="animated" dominant-baseline="central">
-                FREESTYLER
-            </text>
-        </div>
-        <div id="bbar">
-            <div id="word-data-container" class="animated">
-                <div class="word-data synonyms">
-                    <h2>Synonyms</h2>
-                    <ul id="synonym-list"></ul>
+        <div id="logo">LYRASSIST</div>
+        <div id="settings">SETTINGS</div>
+        <div id="app">
+            <div id="word-container">
+                <text id="word" class="animated" dominant-baseline="central">
+                    FREESTYLER
+                </text>
+            </div>
+            <div id="sidebar">
+                <div id="word-data-container">
+                    <div class="word-data definition animated">
+                        <h2>Definition</h2>
+                        <span id="definition"></span>
+                    </div>
+                    <div class="word-data synonyms animated">
+                        <h2>Synonyms</h2>
+                        <ul id="synonym-list"></ul>
+                    </div>
+                    <div class="word-data related animated">
+                        <h2>Related</h2>
+                        <ul id="related-list"></ul>
+                    </div>
                 </div>
-                <div class="word-data definition">
-                    <h2>Definition</h2>
-                    <span id="definition"></span>
-                </div>
-                <div class="word-data related">
-                    <h2>Related Words</h2>
-                    <ul id="related-list"></ul>
+                <div id="saved-words-container">
+                    <h2>Saved Words</h2>
+                    <ul id="saved-words-list"></ul>
                 </div>
             </div>
         </div>
