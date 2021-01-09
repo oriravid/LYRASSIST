@@ -46,3 +46,23 @@
     opacity: 0; }
   100% {
     opacity: 0; } }
+
+@keyframes save {
+  0% {
+    opacity: 0;
+    filter: blur(1.5px);
+    transform: scale(0); }
+  50% {
+    opacity: 1;
+    filter: blur(3px);
+    transform: scale(5); }
+  100% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(10); } }
+
+@keyframes savedword {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }

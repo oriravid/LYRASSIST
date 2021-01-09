@@ -26,21 +26,98 @@ __webpack_require__.r(__webpack_exports__);
 // console.log(allWords);
 // console.log(helpers.arrayUnique(allWords));
 
-window.addEventListener("DOMContentLoaded", (e) => {
+window.addEventListener("DOMContentLoaded", () => {
+    //VARIABLES////////////////////////////////////////////////////////////////
     //big word
     const $wordContainer = $("#word-container");
     const $wordEl = $("#word");
+    const $ripple = $("#ripple");
 
     //word data
     const $definition = $("#definition");
     const $synonymList = $("#synonym-list");
     const $relatedList = $("#related-list");
 
+    //All animated elements
+    const $animatedEls = $(".animated");
+
     //current word data
     var currentWordObj;
 
+    //SETTINGS/////////////////////////////////////////////////////////////////
+    var settings = localStorage.settings
+        ? JSON.parse(localStorage.settings)
+        : { sidebarHide: false, speed: "med" };
+
+    //animation speed
+
+    const changeSpeed = (speed) => {
+        var $slow = $("#slow");
+        var $med = $("#med");
+        var $fast = $("#fast");
+        var $activeSpeed = $("#active-speed");
+
+        if (speed === "slow") {
+            $animatedEls.css("animation-duration", "10s");
+            $activeSpeed.css("left", 0);
+            $activeSpeed.css("width", $slow.innerWidth() + "px");
+        } else if (speed === "med") {
+            $animatedEls.css("animation-duration", "6s");
+            $activeSpeed.css("left", $slow.innerWidth() + "px");
+            $activeSpeed.css("width", $med.innerWidth() + "px");
+        } else if (speed === "fast") {
+            $animatedEls.css("animation-duration", "3s");
+            $activeSpeed.css(
+                "left",
+                $slow.innerWidth() + $med.innerWidth() + 1 + "px"
+            );
+            $activeSpeed.css("width", $fast.innerWidth() + "px");
+        }
+
+        $activeSpeed.text(speed[0].toUpperCase() + speed.slice(1));
+
+        settings.speed = speed;
+        localStorage.setItem("settings", JSON.stringify(settings));
+    };
+
+    $(".switch3").click((e) => {
+        changeSpeed(e.currentTarget.id);
+    });
+
+    changeSpeed(settings.speed);
+
+    //sidebar hide
+    $("#sidebar-setting").attr("checked", settings.sidebarHide);
+    $("#sidebar-setting").change((e) => {
+        settings.sidebarHide = e.target.checked;
+        localStorage.setItem("settings", JSON.stringify(settings));
+    });
+
+    const $sidebar = $("#sidebar");
+
+    const sidebarHide = () => {
+        settings.sidebarHide
+            ? $sidebar.addClass("hidden")
+            : $sidebar.removeClass("hidden");
+    };
+
+    //ANIMATION LOOP////////////////////////////////////////////////////////////
+
+    var iteration = 0;
     $wordContainer.on(" animationiteration ", () => {
+        //increment iteration
+        iteration++;
+
+        //bring logo up!
+        if (iteration === 1) $("#logo").removeClass("inactive");
+
+        // new word
         currentWordObj = _words__WEBPACK_IMPORTED_MODULE_0__.default[Math.floor(Math.random() * _words__WEBPACK_IMPORTED_MODULE_0__.default.length)];
+
+        //check if word is saved or not
+        savedWords[currentWordObj.word]
+            ? $wordEl.addClass("saved")
+            : $wordEl.removeClass("saved");
 
         // replace word
         $wordEl.text(currentWordObj.word);
@@ -63,49 +140,30 @@ window.addEventListener("DOMContentLoaded", (e) => {
             .forEach((rel) => {
                 $relatedList.append("<li>" + rel + "</li>");
             });
+
+        //auto hide sidebar if necessary
+        sidebarHide();
     });
 
-    //Animation
-    const $animatedEls = $(".animated");
-
-    $("#slow").click(() => $animatedEls.css("animation-duration", "10s"));
-    $("#med").click(() => $animatedEls.css("animation-duration", "6s"));
-    $("#fast").click(() => $animatedEls.css("animation-duration", "3s"));
-
-    $animatedEls.on("mouseenter", () => $($animatedEls).addClass("paused"));
-    $animatedEls.on("mouseleave", () => $($animatedEls).removeClass("paused"));
-
-    //sidebar on word hover
-    $wordEl.on("mouseenter", () => {
-        const $sidebar = $("#sidebar");
-        if ($sidebar.hasClass("hidden")) {
-            $sidebar.removeClass("hidden");
-            $wordEl.one("mouseleave", () => $sidebar.addClass("hidden"));
-        }
-    });
-
-    //sidebar settings
-    $("#sidebar-setting").click(() => $("#sidebar").toggleClass("hidden"));
-
-    //saved words
+    //SAVED WORDS///////////////////////////////////////////////////////////////
     var savedWords = localStorage.savedWords
         ? JSON.parse(localStorage.savedWords)
         : {};
     const $savedList = $("#saved-words-list");
 
     const generateSavedWord = (savedWordObj) => {
-        var $savedWordLi = $("<li class='saved-word'></li>");
+        var $savedWordLi = $("<li class='saved-word pointer'></li>");
+        $savedWordLi.click(() => inspectWord(savedWordObj.word));
+
+        var $wordContent = $(`<span>${savedWordObj.word}</span>`);
+        $savedWordLi.append($wordContent);
 
         var $deleteWord = $(`${_icons__WEBPACK_IMPORTED_MODULE_2__.close("icon")}`);
-        $deleteWord.on("click", () =>
-            removeSavedWord($deleteWord, savedWordObj.word)
-        );
+        $deleteWord.click((e) => {
+            e.stopPropagation();
+            removeSavedWord($deleteWord, savedWordObj.word);
+        });
         $savedWordLi.append($deleteWord);
-
-        var $wordContent = $(
-            `<span class="pointer">${savedWordObj.word}</span>`
-        );
-        $savedWordLi.append($wordContent);
 
         return $savedWordLi;
     };
@@ -118,19 +176,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
         });
     }
 
-    //save a word
-    $("body").on("keydown", (e) => {
-        if (
-            e.keyCode === 32 &&
-            currentWordObj &&
-            !savedWords[currentWordObj.word]
-        ) {
-            savedWords[currentWordObj.word] = currentWordObj;
-            $savedList.append(generateSavedWord(currentWordObj));
-            localStorage.setItem("savedWords", JSON.stringify(savedWords));
-        }
-    });
-
     //remove a word
     const removeSavedWord = (ele, savedWord) => {
         $(ele).parent("li").remove();
@@ -138,6 +183,44 @@ window.addEventListener("DOMContentLoaded", (e) => {
         delete savedWords[savedWord];
         localStorage.setItem("savedWords", JSON.stringify(savedWords));
     };
+
+    //inspect a word
+    const inspectWord = (word) => {
+        alert(word);
+    };
+
+    //KEYBOARD SHORTCUTS///////////////////////////////////////////////////////
+    var keysPressed = {};
+
+    $("body").on("keydown", (e) => {
+        keysPressed[e.key] = true;
+        if (iteration === 0) return;
+
+        // pause animations
+        if (keysPressed[" "]) {
+            $($animatedEls).toggleClass("paused");
+            if (settings.sidebarHide === true) $sidebar.toggleClass("hidden");
+        }
+
+        //save a word
+        if (
+            keysPressed.Meta &&
+            keysPressed.Alt &&
+            !savedWords[currentWordObj.word]
+        ) {
+            savedWords[currentWordObj.word] = currentWordObj;
+            $savedList.append(generateSavedWord(currentWordObj));
+            localStorage.setItem("savedWords", JSON.stringify(savedWords));
+
+            $ripple.addClass("active");
+            setTimeout(() => $ripple.removeClass("active"), 3000);
+            $wordEl.addClass("saved");
+        }
+    });
+
+    $("body").on("keyup", (e) => {
+        delete keysPressed[e.key];
+    });
 });
 
 

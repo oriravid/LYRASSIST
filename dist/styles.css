@@ -204,10 +204,89 @@ body {
   fill: #fff; }
 
 .icon:hover {
-  cursor: pointer; }
+  cursor: pointer;
+  opacity: 1; }
 
 .pointer:hover {
   cursor: pointer; }
+
+#speed-setting {
+  position: relative;
+  display: block;
+  background-color: #d6d6d8;
+  height: 34px;
+  border-radius: 34px; }
+
+.switch3 {
+  cursor: pointer;
+  float: left; }
+
+.active-speed {
+  position: absolute;
+  width: 0;
+  left: 0;
+  background-color: #123;
+  border-radius: 34px;
+  color: white; }
+
+.switch3,
+.active-speed {
+  height: 100%;
+  padding: 6px 15px;
+  text-align: center;
+  font-weight: 600;
+  transition: 0.4s; }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; }
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d6d6d8;
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
+
+input:checked + .slider {
+  background-color: #123; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
 
 /* BACKGROUND 
 /////////////////////////////////////////////////////////////////////////////*/
@@ -234,7 +313,20 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
-  color: white; }
+  font-family: "Poppins";
+  letter-spacing: 0.075em;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 1s; }
+
+#logo span {
+  color: #d6d6d8;
+  font-weight: 700; }
+
+#logo.inactive {
+  opacity: 0; }
 
 #settings {
   position: absolute;
@@ -242,7 +334,8 @@ body {
   left: 0;
   padding: 10px;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  z-index: 10; }
 
 #settings > *:not(:last-child) {
   margin-right: 20px; }
@@ -291,12 +384,12 @@ body {
 /* WORD 
 /////////////////////////////////////////////////////////////////////////////*/
 #word-container {
+  position: relative;
   flex-grow: 999;
   min-width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  top: -1rem; }
+  justify-content: center; }
 
 #word {
   font-family: "Poppins";
@@ -305,23 +398,50 @@ body {
   letter-spacing: 0.075em;
   color: white;
   padding: 0.5em;
-  animation: textrise 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  animation: textrise 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: color 0.5s; }
 
 #word.paused {
   animation-play-state: paused; }
 
+#word.saved {
+  color: #e8e3ff; }
+
+#ripple {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; }
+
+#ripple:before, #ripple:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  opacity: 0; }
+
+#ripple.active:before, #ripple.active:after {
+  animation: save 2.65s linear 0s; }
+
+#ripple.active:after {
+  animation-delay: 350ms; }
+
 /* SIDEBAR 
 /////////////////////////////////////////////////////////////////////////////*/
 #sidebar {
-  flex-basis: 16rem;
-  flex-grow: 1;
+  width: 275px;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px; }
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.5); }
 
 #sidebar > * {
   width: 100%;
   height: 50%;
-  text-align: right; }
+  padding: 20px; }
 
 #sidebar > * h2 {
   font-size: 13px;
@@ -334,6 +454,7 @@ body {
 /* WORD DATA 
 /////////////////////////////////////////////////////////////////////////////*/
 .word-data {
+  overflow-y: scroll;
   margin-bottom: 20px;
   animation: fade 6s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
@@ -348,44 +469,53 @@ body {
 
 /* SAVED LIST 
 /////////////////////////////////////////////////////////////////////////////*/
+#saved-words-list {
+  display: flex;
+  flex-flow: row wrap;
+  height: calc(100% - 23px);
+  overflow-y: scroll;
+  align-content: flex-start; }
+
 .saved-word {
   position: relative;
+  padding: 7.5px;
+  margin: 0 7.5px 7.5px 0;
+  background-color: #d6d6d8;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
-  margin-bottom: 10px; }
+  transition: 0.6s;
+  animation: savedword 0.5s linear; }
 
-.saved-word::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 2px;
-  background-color: rgba(0, 0, 0, 0.1);
-  transition: width 0.4s; }
-
-.saved-word:hover::after {
-  width: 100%; }
+.saved-word:hover {
+  background-color: #123;
+  color: white; }
 
 .saved-word svg {
-  opacity: 0;
-  transition: opacity 0.5s; }
+  height: 17.5px;
+  width: 17.5px;
+  margin-top: 2px;
+  opacity: 0.5;
+  transition: all 0.6s; }
 
 .saved-word:hover svg {
+  fill: white;
   opacity: 1; }
-
-.saved-word:hover span {
-  font-weight: 600; }
 
 /* SIDEBARHIDDEN
 /////////////////////////////////////////////////////////////////////////////*/
 #sidebar {
+  opacity: 1;
   transition: all 0.7s; }
 
 #sidebar.hidden {
-  transform: translateX(100%); }
+  transform: translateX(100%);
+  width: 0;
+  box-shadow: none;
+  opacity: 0; }
 
 /* IMPORTS 
 /////////////////////////////////////////////////////////////////////////////*/
@@ -476,3 +606,23 @@ body {
     opacity: 0; }
   100% {
     opacity: 0; } }
+
+@keyframes save {
+  0% {
+    opacity: 0;
+    filter: blur(1.5px);
+    transform: scale(0); }
+  50% {
+    opacity: 1;
+    filter: blur(3px);
+    transform: scale(5); }
+  100% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(10); } }
+
+@keyframes savedword {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
