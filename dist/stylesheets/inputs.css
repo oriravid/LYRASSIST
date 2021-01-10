@@ -1,28 +1,30 @@
 #speed-setting {
   position: relative;
   display: block;
-  background-color: #d6d6d8;
+  background-color: #123;
   height: 34px;
+  padding: 4px;
   border-radius: 34px; }
 
 .switch3 {
   cursor: pointer;
-  float: left; }
+  float: left;
+  color: white;
+  height: 100%; }
 
 .active-speed {
   position: absolute;
   width: 0;
   left: 0;
-  background-color: #123;
-  border-radius: 34px;
-  color: white; }
+  background-color: #fff;
+  border-radius: 34px; }
 
 .switch3,
 .active-speed {
-  height: 100%;
-  padding: 6px 15px;
+  padding: 3px 15px;
   text-align: center;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   transition: 0.4s; }
 
 .switch {
@@ -60,9 +62,6 @@
 
 input:checked + .slider {
   background-color: #123; }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3; }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);

@@ -59,17 +59,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (speed === "slow") {
             $animatedEls.css("animation-duration", "10s");
-            $activeSpeed.css("left", 0);
+            $activeSpeed.css("left", "4px");
             $activeSpeed.css("width", $slow.innerWidth() + "px");
         } else if (speed === "med") {
             $animatedEls.css("animation-duration", "6s");
-            $activeSpeed.css("left", $slow.innerWidth() + "px");
+            $activeSpeed.css("left", $slow.innerWidth() + 4 + "px");
             $activeSpeed.css("width", $med.innerWidth() + "px");
         } else if (speed === "fast") {
             $animatedEls.css("animation-duration", "3s");
             $activeSpeed.css(
                 "left",
-                $slow.innerWidth() + $med.innerWidth() + 1 + "px"
+                $slow.innerWidth() + $med.innerWidth() + 4 + "px"
             );
             $activeSpeed.css("width", $fast.innerWidth() + "px");
         }
@@ -200,6 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (keysPressed[" "]) {
             $($animatedEls).toggleClass("paused");
             if (settings.sidebarHide === true) $sidebar.toggleClass("hidden");
+            $(".icon.paused").toggleClass("active");
         }
 
         //save a word
@@ -220,6 +221,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
     $("body").on("keyup", (e) => {
         delete keysPressed[e.key];
+    });
+
+    //SETTINGS MENU///////////////////////////////////////////////////////
+    var menuBusy = false;
+    const $settings = $("#settings");
+    const $settingsChldrn = $("#settings > div");
+
+    if (!menuBusy) {
+        $(".gear").mouseenter(() => {
+            menuBusy = true;
+            $settings.addClass("active");
+            $settingsChldrn.addClass("active");
+            setTimeout(() => $settingsChldrn.addClass("nodly"), 400);
+        });
+    }
+    $settings.mouseleave(() => {
+        $settingsChldrn.removeClass("active");
+        setTimeout(() => {
+            $settings.removeClass("active");
+            $settingsChldrn.removeClass("nodly");
+            menuBusy = false;
+        }, 400);
     });
 });
 
