@@ -398,7 +398,7 @@ input:checked + .slider:before {
 
 .icon.paused {
   position: absolute;
-  left: 80px;
+  left: 50px;
   bottom: 25px;
   opacity: 0;
   z-index: -1;
@@ -429,10 +429,12 @@ input:checked + .slider:before {
   flex-grow: 999;
   min-width: 50%;
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center; }
 
 #word {
+  position: absolute;
   font-family: "Poppins";
   font-size: 100px;
   font-weight: 400;
@@ -474,6 +476,7 @@ input:checked + .slider:before {
 /* SIDEBAR 
 /////////////////////////////////////////////////////////////////////////////*/
 #sidebar {
+  position: relative;
   width: 275px;
   background-color: rgba(255, 255, 255, 0.9);
   border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -481,8 +484,13 @@ input:checked + .slider:before {
 
 #sidebar > * {
   width: 100%;
-  height: 50%;
   padding: 20px; }
+
+#sidebar > #word-data-container {
+  height: 50%; }
+
+#sidebar > #saved-words-container {
+  height: calc(50% - 133px); }
 
 /* WORD DATA 
 /////////////////////////////////////////////////////////////////////////////*/
@@ -538,6 +546,20 @@ input:checked + .slider:before {
   fill: white;
   opacity: 1; }
 
+/* INSTRUCTIONS
+/////////////////////////////////////////////////////////////////////////////*/
+#instructions > li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between; }
+
+#instructions > li > * {
+  flex: 0 0 50%; }
+
+#instructions > li span {
+  font-weight: 700;
+  font-size: 18px; }
+
 /* SIDEBARHIDDEN
 /////////////////////////////////////////////////////////////////////////////*/
 #sidebar {
@@ -549,6 +571,19 @@ input:checked + .slider:before {
   width: 0;
   box-shadow: none;
   opacity: 0; }
+
+/* INSPECT
+/////////////////////////////////////////////////////////////////////////////*/
+#inspect-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly; }
 
 /* IMPORTS 
 /////////////////////////////////////////////////////////////////////////////*/

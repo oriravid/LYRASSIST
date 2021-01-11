@@ -1,4 +1,5 @@
 import allWords from "./words";
+// import inspectWord from "./inspect";
 import * as helpers from "./helpers";
 import * as icons from "./icons";
 
@@ -87,6 +88,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //ANIMATION LOOP////////////////////////////////////////////////////////////
 
     var iteration = 0;
+
     $wordContainer.on(" animationiteration ", () => {
         //increment iteration
         iteration++;
@@ -137,8 +139,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const $savedList = $("#saved-words-list");
 
     const generateSavedWord = (savedWordObj) => {
-        var $savedWordLi = $("<li class='saved-word pointer'></li>");
-        $savedWordLi.click(() => inspectWord(savedWordObj.word));
+        var $savedWordLi = $("<li class='saved-word'></li>");
+        // $savedWordLi.click(() => inspectWord(savedWordObj.word));
 
         var $wordContent = $(`<span>${savedWordObj.word}</span>`);
         $savedWordLi.append($wordContent);
@@ -169,11 +171,6 @@ window.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("savedWords", JSON.stringify(savedWords));
     };
 
-    //inspect a word
-    const inspectWord = (word) => {
-        alert(word);
-    };
-
     //KEYBOARD SHORTCUTS///////////////////////////////////////////////////////
     var keysPressed = {};
 
@@ -183,6 +180,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // pause animations
         if (keysPressed[" "]) {
+            e.preventDefault();
             $($animatedEls).toggleClass("paused");
             if (settings.sidebarHide === true) $sidebar.toggleClass("hidden");
             $(".icon.paused").toggleClass("active");
