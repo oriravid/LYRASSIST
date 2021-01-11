@@ -139,8 +139,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const $savedList = $("#saved-words-list");
 
     const generateSavedWord = (savedWordObj) => {
-        var $savedWordLi = $("<li class='saved-word'></li>");
+        var $savedWordLi = $("<li class='saved-word pointer'></li>");
         // $savedWordLi.click(() => inspectWord(savedWordObj.word));
+        $savedWordLi.click(() => $savedWordLi.toggleClass("active"));
 
         var $wordContent = $(`<span>${savedWordObj.word}</span>`);
         $savedWordLi.append($wordContent);
