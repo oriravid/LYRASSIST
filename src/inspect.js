@@ -1,5 +1,5 @@
-const DIC_KEY = "5354b9b1-00dd-41d7-be89-46beafb7235d";
-const THE_KEY = "e7647f7a-1124-4a99-a2fa-aafcfb14262d";
+const DIC_KEY = "rdctd";
+const THE_KEY = "rdctd";
 
 //inspect a word
 export default (word) => {
