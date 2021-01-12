@@ -1,3 +1,2 @@
-# Lyrassist
+# [LYRASSIST](https://oriravid.github.io/LYRASSIST/)
 
-Unleash your inner lyrical maven lol
