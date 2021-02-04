@@ -44,18 +44,15 @@ window.addEventListener("DOMContentLoaded", () => {
         if (speed === "slow") {
             $animatedEls.css("animation-duration", "10s");
             $activeSpeed.css("left", "4px");
-            $activeSpeed.css("width", $slow.innerWidth() + "px");
         } else if (speed === "med") {
             $animatedEls.css("animation-duration", "6s");
             $activeSpeed.css("left", $slow.innerWidth() + 4 + "px");
-            $activeSpeed.css("width", $med.innerWidth() + "px");
         } else if (speed === "fast") {
             $animatedEls.css("animation-duration", "3s");
             $activeSpeed.css(
                 "left",
                 $slow.innerWidth() + $med.innerWidth() + 4 + "px"
             );
-            $activeSpeed.css("width", $fast.innerWidth() + "px");
         }
 
         $activeSpeed.text(speed[0].toUpperCase() + speed.slice(1));
@@ -94,7 +91,10 @@ window.addEventListener("DOMContentLoaded", () => {
         iteration++;
 
         //bring logo up!
-        if (iteration === 1) $("#logo").removeClass("inactive");
+        if (iteration === 1) {
+            $("#logo").removeClass("inactive");
+            $("#help").removeClass("inactive");
+        }
 
         // new word
         currentWordObj = allWords[Math.floor(Math.random() * allWords.length)];
@@ -207,13 +207,20 @@ window.addEventListener("DOMContentLoaded", () => {
         delete keysPressed[e.key];
     });
 
+    //HELP MENU///////////////////////////////////////////////////////
+    const $help = $("#help");
+    const $helpDismiss = $("#help-dismiss");
+
+    $(".icon.help").click((e) => $help.removeClass("inactive"));
+    $helpDismiss.click((e) => $help.addClass("inactive"));
+
     //SETTINGS MENU///////////////////////////////////////////////////////
     var menuBusy = false;
     const $settings = $("#settings");
     const $settingsChldrn = $("#settings > div");
 
     if (!menuBusy) {
-        $(".gear").mouseenter(() => {
+        $(".icon.gear").mouseenter(() => {
             menuBusy = true;
             $settings.addClass("active");
             $settingsChldrn.addClass("active");

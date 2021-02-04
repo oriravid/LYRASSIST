@@ -30,6 +30,12 @@ body {
     fill: #fff;
 }
 
+.icon.settings {
+    fill: #333333;
+    height: 17px;
+    width: 17px;
+}
+
 .icon:hover {
     cursor: pointer;
     opacity: 1;
@@ -84,7 +90,7 @@ body {
     font-weight: 500;
     color: white;
     opacity: 0.8;
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 
 #logo span {
@@ -94,6 +100,114 @@ body {
 
 #logo.inactive {
     opacity: 0;
+}
+
+#help {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    max-width: 350px;
+    max-height: calc(100% - 130px);
+    // overflow-y: scroll;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    -webkit-filter: drop-shadow(-5px 0px 15px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(-5px 0px 15px rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    transition: opacity 0.5s;
+
+    &.inactive {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -7.5px;
+        left: 10px;
+        width: 0;
+        height: 0;
+        border-left: 7.5px solid transparent;
+        border-right: 7.5px solid transparent;
+        border-bottom: 7.5px solid rgba(255, 255, 255, 0.9);
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    span {
+        font-weight: 700;
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: $border-1;
+        margin-bottom: 20px;
+    }
+
+    & > ul {
+        margin-bottom: 20px;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    #help-footer {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+
+        .sub1 {
+            font-size: 18px;
+        }
+
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+
+            li {
+                margin: 0 5px;
+
+                a {
+                    color: #333;
+                    font-weight: 600;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        button {
+            background-color: #123;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.05px;
+            transition: 0.6s;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
 }
 
 #settings {
@@ -173,7 +287,7 @@ body {
 
 .icon.paused {
     position: absolute;
-    left: 50px;
+    left: 80px;
     bottom: 25px;
     opacity: 0;
     z-index: -1;

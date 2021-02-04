@@ -6,9 +6,6 @@
 /*!**********************!*\
   !*** ./src/entry.js ***!
   \**********************/
-/*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -61,18 +58,15 @@ window.addEventListener("DOMContentLoaded", () => {
         if (speed === "slow") {
             $animatedEls.css("animation-duration", "10s");
             $activeSpeed.css("left", "4px");
-            $activeSpeed.css("width", $slow.innerWidth() + "px");
         } else if (speed === "med") {
             $animatedEls.css("animation-duration", "6s");
             $activeSpeed.css("left", $slow.innerWidth() + 4 + "px");
-            $activeSpeed.css("width", $med.innerWidth() + "px");
         } else if (speed === "fast") {
             $animatedEls.css("animation-duration", "3s");
             $activeSpeed.css(
                 "left",
                 $slow.innerWidth() + $med.innerWidth() + 4 + "px"
             );
-            $activeSpeed.css("width", $fast.innerWidth() + "px");
         }
 
         $activeSpeed.text(speed[0].toUpperCase() + speed.slice(1));
@@ -111,7 +105,10 @@ window.addEventListener("DOMContentLoaded", () => {
         iteration++;
 
         //bring logo up!
-        if (iteration === 1) $("#logo").removeClass("inactive");
+        if (iteration === 1) {
+            $("#logo").removeClass("inactive");
+            $("#help").removeClass("inactive");
+        }
 
         // new word
         currentWordObj = _words__WEBPACK_IMPORTED_MODULE_0__.default[Math.floor(Math.random() * _words__WEBPACK_IMPORTED_MODULE_0__.default.length)];
@@ -222,13 +219,20 @@ window.addEventListener("DOMContentLoaded", () => {
         delete keysPressed[e.key];
     });
 
+    //HELP MENU///////////////////////////////////////////////////////
+    const $help = $("#help");
+    const $helpDismiss = $("#help-dismiss");
+
+    $(".icon.help").click((e) => $help.removeClass("inactive"));
+    $helpDismiss.click((e) => $help.addClass("inactive"));
+
     //SETTINGS MENU///////////////////////////////////////////////////////
     var menuBusy = false;
     const $settings = $("#settings");
     const $settingsChldrn = $("#settings > div");
 
     if (!menuBusy) {
-        $(".gear").mouseenter(() => {
+        $(".icon.gear").mouseenter(() => {
             menuBusy = true;
             $settings.addClass("active");
             $settingsChldrn.addClass("active");
@@ -252,17 +256,12 @@ window.addEventListener("DOMContentLoaded", () => {
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/
-/*! namespace exports */
-/*! export arrayShuffler [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export arrayUnique [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "arrayShuffler": () => /* binding */ arrayShuffler,
-/* harmony export */   "arrayUnique": () => /* binding */ arrayUnique
+/* harmony export */   "arrayShuffler": () => (/* binding */ arrayShuffler),
+/* harmony export */   "arrayUnique": () => (/* binding */ arrayUnique)
 /* harmony export */ });
 const arrayShuffler = (array) => {
     let i;
@@ -297,75 +296,41 @@ const arrayUnique = (array) => {
 /*!**********************!*\
   !*** ./src/icons.js ***!
   \**********************/
-/*! namespace exports */
-/*! export add [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export addCircle [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export arrow [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export arrowLeft [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export arrowRight [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export browse [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export close [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export closeCircle [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export edit [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export gear [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export go [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export list [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export loop [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export next [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export next2 [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export pause [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export play [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export playCircle [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export playCircleFill [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export playlist [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export previous [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export previous2 [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export recent [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export repeat [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export search [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export shuffle [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export signin [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export signout [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export trash [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export trashOutline [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export volume [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "add": () => /* binding */ add,
-/* harmony export */   "addCircle": () => /* binding */ addCircle,
-/* harmony export */   "arrow": () => /* binding */ arrow,
-/* harmony export */   "arrowLeft": () => /* binding */ arrowLeft,
-/* harmony export */   "arrowRight": () => /* binding */ arrowRight,
-/* harmony export */   "browse": () => /* binding */ browse,
-/* harmony export */   "close": () => /* binding */ close,
-/* harmony export */   "closeCircle": () => /* binding */ closeCircle,
-/* harmony export */   "edit": () => /* binding */ edit,
-/* harmony export */   "gear": () => /* binding */ gear,
-/* harmony export */   "go": () => /* binding */ go,
-/* harmony export */   "list": () => /* binding */ list,
-/* harmony export */   "loop": () => /* binding */ loop,
-/* harmony export */   "next2": () => /* binding */ next2,
-/* harmony export */   "next": () => /* binding */ next,
-/* harmony export */   "pause": () => /* binding */ pause,
-/* harmony export */   "play": () => /* binding */ play,
-/* harmony export */   "playCircle": () => /* binding */ playCircle,
-/* harmony export */   "playCircleFill": () => /* binding */ playCircleFill,
-/* harmony export */   "playlist": () => /* binding */ playlist,
-/* harmony export */   "previous2": () => /* binding */ previous2,
-/* harmony export */   "previous": () => /* binding */ previous,
-/* harmony export */   "recent": () => /* binding */ recent,
-/* harmony export */   "repeat": () => /* binding */ repeat,
-/* harmony export */   "search": () => /* binding */ search,
-/* harmony export */   "shuffle": () => /* binding */ shuffle,
-/* harmony export */   "signin": () => /* binding */ signin,
-/* harmony export */   "signout": () => /* binding */ signout,
-/* harmony export */   "trash": () => /* binding */ trash,
-/* harmony export */   "trashOutline": () => /* binding */ trashOutline,
-/* harmony export */   "volume": () => /* binding */ volume
+/* harmony export */   "add": () => (/* binding */ add),
+/* harmony export */   "addCircle": () => (/* binding */ addCircle),
+/* harmony export */   "arrow": () => (/* binding */ arrow),
+/* harmony export */   "arrowLeft": () => (/* binding */ arrowLeft),
+/* harmony export */   "arrowRight": () => (/* binding */ arrowRight),
+/* harmony export */   "browse": () => (/* binding */ browse),
+/* harmony export */   "close": () => (/* binding */ close),
+/* harmony export */   "closeCircle": () => (/* binding */ closeCircle),
+/* harmony export */   "edit": () => (/* binding */ edit),
+/* harmony export */   "gear": () => (/* binding */ gear),
+/* harmony export */   "go": () => (/* binding */ go),
+/* harmony export */   "list": () => (/* binding */ list),
+/* harmony export */   "loop": () => (/* binding */ loop),
+/* harmony export */   "next2": () => (/* binding */ next2),
+/* harmony export */   "next": () => (/* binding */ next),
+/* harmony export */   "pause": () => (/* binding */ pause),
+/* harmony export */   "play": () => (/* binding */ play),
+/* harmony export */   "playCircle": () => (/* binding */ playCircle),
+/* harmony export */   "playCircleFill": () => (/* binding */ playCircleFill),
+/* harmony export */   "playlist": () => (/* binding */ playlist),
+/* harmony export */   "previous2": () => (/* binding */ previous2),
+/* harmony export */   "previous": () => (/* binding */ previous),
+/* harmony export */   "recent": () => (/* binding */ recent),
+/* harmony export */   "repeat": () => (/* binding */ repeat),
+/* harmony export */   "search": () => (/* binding */ search),
+/* harmony export */   "shuffle": () => (/* binding */ shuffle),
+/* harmony export */   "signin": () => (/* binding */ signin),
+/* harmony export */   "signout": () => (/* binding */ signout),
+/* harmony export */   "trash": () => (/* binding */ trash),
+/* harmony export */   "trashOutline": () => (/* binding */ trashOutline),
+/* harmony export */   "volume": () => (/* binding */ volume)
 /* harmony export */ });
 const add = (classes) =>
     `<svg
@@ -792,15 +757,11 @@ const volume = (classes) =>
 /*!**********************!*\
   !*** ./src/words.js ***!
   \**********************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([
     {
@@ -17427,7 +17388,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
