@@ -345,8 +345,9 @@ input:checked + .slider:before {
   position: absolute;
   top: 60px;
   left: 20px;
-  max-width: 350px;
+  max-width: 300px;
   max-height: calc(100% - 130px);
+  overflow-y: scroll;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 4px;
@@ -358,17 +359,6 @@ input:checked + .slider:before {
 #help.inactive {
   opacity: 0;
   pointer-events: none; }
-
-#help::after {
-  content: "";
-  position: absolute;
-  top: -7.5px;
-  left: 10px;
-  width: 0;
-  height: 0;
-  border-left: 7.5px solid transparent;
-  border-right: 7.5px solid transparent;
-  border-bottom: 7.5px solid rgba(255, 255, 255, 0.9); }
 
 #help p {
   margin-bottom: 20px; }
